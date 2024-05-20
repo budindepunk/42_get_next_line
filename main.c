@@ -25,7 +25,7 @@ int	main(void)
 			printf("end of file\n");
 		i++;
 	}
-	
+	free (line);
 	return (0);
 }
 

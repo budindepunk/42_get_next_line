@@ -47,7 +47,7 @@ char	*read_to_line(int fd, char *buff, const char *remembrance)
 	bytes_read = read(fd, buff, BUFFER_SIZE);
 	while (bytes_read > 0)
 	{
-		buff[BUFFER_SIZE] = '\0';
+		buff[bytes_read] = '\0';
 		line_raw = ft_strjoin(line_raw, buff);
 		if (ft_strchr(buff, '\n'))
 			break ;

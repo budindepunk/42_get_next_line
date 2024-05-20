@@ -5,7 +5,7 @@ int	main(void)
 	int	fd;
 	char 	*line;
 
-	fd = open("test_3.txt", O_RDONLY);
+	fd = open("test_2.txt", O_RDONLY);
 
 	// line = get_next_line(fd);
 	// printf("%s\n", line);
@@ -16,7 +16,7 @@ int	main(void)
 	// }
 
 	int i = 0;
-	while (i < 5)
+	while (i < 15)
 	{
 		line = get_next_line(fd);
 		if (line != NULL)

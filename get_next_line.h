@@ -5,11 +5,13 @@
 #  define BUFFER_SIZE 10
 # endif
 
-# include <fcntl.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
 
 char	*get_next_line(int fd);
+char	*read_to_line(int fd, char *buff, const char *remembrance);
+char	*extract_line(char *line_raw, char *remembrance);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);

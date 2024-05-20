@@ -6,14 +6,13 @@ char	*get_next_line(int fd)
 	char	*buff;
 	char	*line_raw;
 
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = (char *)malloc((sizeof(char) * BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
 	if (remembrance == 0)
 		remembrance = "";
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	//printf("remembrance: %s\n", remembrance);
 	if (ft_strchr(remembrance, '\n') == NULL)
 		line_raw = read_to_line(fd, buff, remembrance);
 	else
@@ -23,7 +22,7 @@ char	*get_next_line(int fd)
 	}
 	free(buff);
 	buff = NULL;
-	if (!line_raw)
+	if (!line_raw || ft_strlen(line_raw) < 1)
 		return (NULL);
 	remembrance = set_remembrance(line_raw);
 	return (extract_line(line_raw));

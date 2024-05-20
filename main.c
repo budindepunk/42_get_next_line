@@ -3,22 +3,29 @@
 int	main(void)
 {
 	int	fd;
+	char 	*line;
 
 	fd = open("test_3.txt", O_RDONLY);
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
+
+	// line = get_next_line(fd);
+	// printf("%s\n", line);
+	// while (line != NULL)
+	// {
+	// 	printf("%s\n", line);
+	// 	line = get_next_line(fd);
+	// }
+
+	int i = 0;
+	while (i < 5)
+	{
+		line = get_next_line(fd);
+		if (line != NULL)
+			printf("%s\n", line);
+		else
+			printf("end of file\n");
+		i++;
+	}
+	
 	return (0);
 }
 

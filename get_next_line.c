@@ -1,32 +1,6 @@
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
-{
-	static char	*remembrance;
-	char	*buff;
-	char	*line_raw;
-	char 	*line;
-
-	buff = (char *)malloc((sizeof(char) * BUFFER_SIZE + 1));
-	if (!buff)
-		return (NULL);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
-	line_raw = read_to_line(fd, buff, remembrance);
-	if (remembrance != NULL)
-		free(remembrance);
-	if (!line_raw || ft_strlen(line_raw) < 1)
-	{
-		free(line_raw);
-		return (NULL);
-	}
-	remembrance = set_remembrance(line_raw);
-	line = extract_line(line_raw);
-	free(buff);
-	free(line_raw);
-	return (line);
-}
-
+/*
 char	*read_to_line(int fd, char *buff, const char *remembrance)
 {
 	char	*line_raw;
@@ -55,7 +29,34 @@ char	*read_to_line(int fd, char *buff, const char *remembrance)
 	}
 	return (line_raw);
 }
+*/
 
+static char	*read_to_line(int fd, char *buff, char *remembrance)
+{
+	int	bytes_read;
+	char *temp;
+
+	bytes_read = 1;
+	while (bytes_read != '\0')
+	{
+		bytes_read = read(fd, buff, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (0);
+		else if (bytes_read == 0)
+			break ;
+		buff[bytes_read] = '\0';
+		if (!remembrance)
+			remembrance = ft_strdup("");
+		temp = remembrance;
+		remembrance = ft_strjoin(temp, buff);
+		free(temp);
+		temp = NULL;
+		if (ft_strchr(buff, '\n'))
+			break ;
+	}
+	return (remembrance);
+}
+/*
 char	*extract_line(char *line_raw)
 {
 	char	*line;
@@ -68,8 +69,10 @@ char	*extract_line(char *line_raw)
 	ft_strlcpy(line, line_raw, i + 1);
 	return (line);
 }
+*/
 
-char	*set_remembrance(char *line_raw)
+// i'd like us to go through the logic here. maybe write it down in human language
+static char	*set_remembrance(char *line_raw)
 {
 	char	*remembrance;
 	size_t 	i;
@@ -77,9 +80,40 @@ char	*set_remembrance(char *line_raw)
 	i = 0;
 	while (line_raw[i] != '\n' && line_raw[i] != '\0')
 		i++;
+	remembrance = ft_substr(line_raw, i + 1, ft_strlen(line_raw) - i);
 	if (i == ft_strlen(line_raw))
-		return (NULL);
-	remembrance = (char *)malloc(sizeof(char) * (ft_strlen(line_raw) - i));
-	ft_strlcpy(remembrance, line_raw + i + 1, ft_strlen(line_raw) - i);
+	{
+		free(remembrance);
+		remembrance = NULL;
+	}
+	line_raw[i + 1] = '\0';
 	return (remembrance);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*remembrance;
+	char	*buff;
+//	char	*line_raw;
+	char 	*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	buff = (char *)malloc((sizeof(char) * BUFFER_SIZE + 1));
+	if (!buff)
+		return (NULL);
+	line = read_to_line(fd, buff, remembrance);
+	free(buff);
+	buff = NULL;
+//	if (remembrance != NULL)
+//		free(remembrance);
+	if (!line|| ft_strlen(line) < 1)
+	{
+		free(line);
+		return (NULL);
+	}
+	remembrance = set_remembrance(line);
+//	line = extract_line(line_raw);
+//	free(line_raw);
+	return (line);
 }

@@ -40,8 +40,7 @@ static char	*set_remembrance(char *line_raw)
 		free(remembrance);
 		remembrance = NULL;
 	}
-	if (line_raw[i] != '\0')
-		line_raw[i + 1] = '\0';
+	line_raw[i + 1] = '\0';
 	return (remembrance);
 }
 

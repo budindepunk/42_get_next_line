@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1 + 1));
 	if (!new)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -39,7 +39,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new[i + j] = '\0';
 	return (new);
 }
+/*
+	size_t	ft_strlcat(char *dst, const char *src, size_t size)
+	{
+		size_t	i;
+		size_t	j;
 
+		i = 0;
+		j = 0;
+		while (dst[i] && i < size)
+			i++;
+		while (src[j] && (i + j + 1) < size)
+		{
+			dst[i + j] = src[j];
+			j++;
+		}
+		if (i != size)
+			dst[i + j] = '\0';
+		return (i + ft_strlen(src));
+	}
+*/
 char	*ft_strdup(const char *s)
 {
 	char	*new;
@@ -82,7 +101,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	j;
 	char	*str;
 
-	str = (char *)malloc(sizeof(*s) * (len + 1));
+	str = (char *)malloc(sizeof(*s) * (len + 1 + 1));
 	if (str == 0)
 		return (NULL);
 	i = 0;

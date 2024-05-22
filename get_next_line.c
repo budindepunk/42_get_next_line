@@ -26,7 +26,6 @@ static char	*read_to_line(int fd, char *buff, char *remembrance)
 	return (remembrance);
 }
 
-// i'd like us to go through the logic here. maybe write it down in human language
 static char	*set_remembrance(char *line_raw)
 {
 	char	*remembrance;

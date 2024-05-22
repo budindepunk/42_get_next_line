@@ -12,7 +12,7 @@
 # include <stdio.h> // remove later
 
 char	*get_next_line(int fd);
-char	*read_to_line(int fd, char *buff, const char *remembrance);
+//char	*read_to_line(int fd, char *buff, const char *remembrance);
 //static char	*read_to_line2(int fd, char *buff, char *remembrance);
 char	*extract_line(char *line_raw);
 //static char	*set_remembrance(char *line_raw);

@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1 + 1));
 	if (!new)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -65,6 +65,8 @@ char	*ft_strdup(const char *s)
 	size_t		i;
 
 	i = 0;
+	if (s == NULL)
+		return (NULL);
 	new = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!new)
 		return (NULL);
@@ -99,7 +101,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	j;
 	char	*str;
 
-	str = (char *)malloc(sizeof(*s) * (len + 1));
+	str = (char *)malloc(sizeof(*s) * (len + 1 + 1));
 	if (str == 0)
 		return (NULL);
 	i = 0;

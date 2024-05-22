@@ -5,7 +5,7 @@ int	main(void)
 	int	fd;
 	char 	*line;
 
-	fd = open("test_2.txt", O_RDONLY);
+	fd = open("test_1.txt", O_RDONLY);
 
 	// line = get_next_line(fd);
 	// printf("%s\n", line);
@@ -23,9 +23,9 @@ int	main(void)
 			printf("%s\n", line);
 		else
 			printf("end of file\n");
+		free (line);
 		i++;
 	}
-	free (line);
 	return (0);
 }
 

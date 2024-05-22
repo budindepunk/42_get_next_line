@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*read_to_line(int fd, char *buff, char *remembrance)
 {
@@ -46,7 +46,7 @@ static char	*set_remembrance(char *line_raw)
 
 char	*get_next_line(int fd)
 {
-	static char	*remembrance;
+	static char	*remembrance[MAX_ITEMS];
 	char	*buff;
 	char 	*line;
 
@@ -55,7 +55,7 @@ char	*get_next_line(int fd)
 	buff = (char *)malloc((sizeof(char) * BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
-	line = read_to_line(fd, buff, remembrance);
+	line = read_to_line(fd, buff, remembrance[fd]);
 	free(buff);
 	buff = NULL;
 	if (!line || ft_strlen(line) < 1)
@@ -63,6 +63,6 @@ char	*get_next_line(int fd)
 		free(line);
 		return (NULL);
 	}
-	remembrance = set_remembrance(line);
+	remembrance[fd] = set_remembrance(line);
 	return (line);
 }

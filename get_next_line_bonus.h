@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csilva-r <csilva-r@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 16:40:53 by csilva-r          #+#    #+#             */
+/*   Updated: 2024/05/23 16:41:13 by csilva-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
@@ -7,7 +19,6 @@
 # ifndef MAX_ITEMS
 #  define MAX_ITEMS 1024
 # endif
-
 
 # include <unistd.h>
 # include <stdlib.h>

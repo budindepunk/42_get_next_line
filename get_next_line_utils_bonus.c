@@ -1,9 +1,16 @@
-#include "get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csilva-r <csilva-r@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 16:42:50 by csilva-r          #+#    #+#             */
+/*   Updated: 2024/05/23 16:43:32 by csilva-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// had to change what functions we use here. 
-// had to rewrite some to not use others that we didn't bring (join, substr, dup)
-// my original versions were "simpler" basically because they called other stuff
-// almost everything that is malloc'd is malloc'd in these functions. cleaner?
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -17,13 +24,13 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*new;
 
 	i = 0;
 	j = 0;
-	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1 + 1));
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!new)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -39,30 +46,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new[i + j] = '\0';
 	return (new);
 }
-/*
-	size_t	ft_strlcat(char *dst, const char *src, size_t size)
-	{
-		size_t	i;
-		size_t	j;
 
-		i = 0;
-		j = 0;
-		while (dst[i] && i < size)
-			i++;
-		while (src[j] && (i + j + 1) < size)
-		{
-			dst[i + j] = src[j];
-			j++;
-		}
-		if (i != size)
-			dst[i + j] = '\0';
-		return (i + ft_strlen(src));
-	}
-*/
 char	*ft_strdup(const char *s)
 {
 	char	*new;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	if (s == NULL)
@@ -75,7 +63,7 @@ char	*ft_strdup(const char *s)
 		new[i] = s[i];
 		i++;
 	}
-	new[i] = '\0';	
+	new[i] = '\0';
 	return (new);
 }
 
@@ -101,7 +89,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	j;
 	char	*str;
 
-	str = (char *)malloc(sizeof(*s) * (len + 1 + 1));
+	str = (char *)malloc(sizeof(*s) * (len + 1));
 	if (str == 0)
 		return (NULL);
 	i = 0;

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csilva-r <csilva-r@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 16:40:12 by csilva-r          #+#    #+#             */
+/*   Updated: 2024/05/23 16:40:14 by csilva-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 static char	*read_to_line(int fd, char *buff, char *remembrance)
 {
-	int	bytes_read;
-	char *temp;
+	int		bytes_read;
+	char	*temp;
 
 	bytes_read = 1;
 	while (bytes_read != 0)
@@ -29,7 +41,7 @@ static char	*read_to_line(int fd, char *buff, char *remembrance)
 static char	*set_remembrance(char *line_raw)
 {
 	char	*remembrance;
-	size_t 	i;
+	size_t	i;
 
 	i = 0;
 	while (line_raw[i] != '\n' && line_raw[i] != '\0')
@@ -40,17 +52,18 @@ static char	*set_remembrance(char *line_raw)
 		free(remembrance);
 		remembrance = NULL;
 	}
-	line_raw[i + 1] = '\0';
+	if (line_raw[i] != '\0')
+		line_raw[i + 1] = '\0';
 	return (remembrance);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*remembrance[MAX_ITEMS];
-	char	*buff;
-	char 	*line;
+	char		*buff;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buff = (char *)malloc((sizeof(char) * BUFFER_SIZE + 1));
 	if (!buff)

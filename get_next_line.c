@@ -40,6 +40,19 @@ static char	*read_to_line(int fd, char *line)
 	return (line);
 }
 
+static char	*trim_line(char *raw)
+{
+	int		i;
+	char	*cooked;
+
+	i = 0;
+	while (raw[i] != '\0')
+		i++;
+	cooked = ft_substr(raw, 0, i);
+	free(raw);
+	return (cooked);
+}
+
 static char	*set_line_and_remember(char *line)
 {
 	size_t	i;
@@ -83,5 +96,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	remembrance = set_line_and_remember(line);
+	line = trim_line(line);
 	return (line);
 }

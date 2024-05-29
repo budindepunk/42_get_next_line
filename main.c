@@ -1,32 +1,16 @@
 #include "get_next_line.h"
+#include <stdio.h>
 
 int	main(void)
 {
 	int	fd;
 	char 	*line;
 
-	fd = open("test_1.txt", O_RDONLY);
-
-	// line = get_next_line(fd);
-	// printf("%s\n", line);
-	// while (line != NULL)
-	// {
-	// 	printf("%s\n", line);
-	// 	line = get_next_line(fd);
-	// }
-
-	int i = 0;
-	while (i < 15)
+	fd = open("test_2.txt", O_RDONLY);
+	while (line = get_next_line(fd))
 	{
-		line = get_next_line(fd);
-		if (line != NULL)
-			printf("%s\n", line);
-		else
-			printf("end of file\n");
-		free (line);
-		i++;
+		write(1, line, 1);
 	}
+
 	return (0);
 }
-
-// problem when i keep calling gnl after file ended
